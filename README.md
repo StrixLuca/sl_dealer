@@ -34,3 +34,9 @@ Notification System: Set the required item for receiving notifications.
 Target Systems: Seamlessly toggle compatibility with different target systems and frameworks.
 Anti-Dump Protection: Secure sensitive data like coordinates.
 Debugging Options: Enable or disable debugging features to assist with troubleshooting during setup or updates.
+
+To run SL_Dealer, ensure the following dependencies are installed:
+
+BL Bridge: Enables compatibility with all frameworks and target systems.
+ox_lib: Essential for optimized performance and smooth integration.
+Both are required for full functionality and seamless operation.
