@@ -35,8 +35,17 @@ Target Systems: Seamlessly toggle compatibility with different target systems an
 Anti-Dump Protection: Secure sensitive data like coordinates.
 Debugging Options: Enable or disable debugging features to assist with troubleshooting during setup or updates.
 
+## Dependencies
 To run SL_Dealer, ensure the following dependencies are installed:
 
-BL Bridge: Enables compatibility with all frameworks and target systems.
-ox_lib: Essential for optimized performance and smooth integration.
-Both are required for full functionality and seamless operation.
+[BL Bridge](https://github.com/Byte-Labs-Studio/bl_bridge)
+[ox_lib](https://github.com/overextended/ox_lib)
+
+for interact you can choose
+[ox_target](https://github.com/overextended/ox_target)
+[sleepless_interact](https://github.com/Sleepless-Development/sleepless_interact)
+[darkinteract](https://github.com/darktrovx/interact)
+[interaction-menu](https://github.com/swkeep/interaction-menu)
+
+
+
