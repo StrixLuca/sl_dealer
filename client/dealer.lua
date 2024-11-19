@@ -12,7 +12,7 @@ local inventory = framework:inventory()
 local progressbar = framework:progressbar()
 local notify = framework:notify()
 
-local npcInteract = nil
+local npcinteract = nil
 local huidigeLocatie = nil
 
 if not core and config.Config.debug then
@@ -58,14 +58,14 @@ local function npcinteractie()
     })
 
     if config.Config.interaction == 'target' or config.Config.interaction == 'interact' then
-        TaskPlayAnim(npcInteract, config.Config.npcanimation.dict, config.Config.npcanimation.clip, 8.0, -8.0, -1, 1, 0, false, false, false)
+        TaskPlayAnim(npcinteract, config.Config.npcanimation.dict, config.Config.npcanimation.clip, 8.0, -8.0, -1, 1, 0, false, false, false)
         Wait(config.Config.progressbar.duration)
     end
 
     inventory.openInventory("shop", config.Config.BlackMarket.id)
 
     if config.Config.interaction == 'target' or config.Config.interaction == 'interact' then
-        ClearPedTasks(npcInteract)
+        ClearPedTasks(npcinteract)
     end
 
     if config.Config.debug then
@@ -115,46 +115,46 @@ local function configureernpcinteractie(npc, opties)
 end
 
 -- Maak een NPC punt
-local function maaknpcPunt(coords)
+local function maaknpcpunt(coords)
     local point = lib.points.new({
         coords = coords,
         distance = config.Config.npcLoadDistance,
     })
 
     function point:onEnter()
-        spawnNpc()
+        spawnnpc()
     end
 
     function point:onExit()
-        if npcInteract then
-            DeleteEntity(npcInteract)
-            npcInteract = nil
+        if npcinteract then
+            DeleteEntity(npcinteract)
+            npcinteract = nil
         end
     end
 end
 
 -- Spawn een NPC op de huidige locatie
-function spawnNpc()
-    if npcInteract then return end
+function spawnnpc()
+    if npcinteract then return end
 
     local locatie = serverConfig.locations[huidigeLocatie]
     local coords = locatie.coords
     local model = config.Config.BlackMarket.model
 
     if lib.requestModel(model, 10000) then
-        npcInteract = CreatePed(4, model, coords.x, coords.y, coords.z, coords.w, true, false)
-        SetBlockingOfNonTemporaryEvents(npcInteract, true)
-        SetEntityInvincible(npcInteract, true)
-        FreezeEntityPosition(npcInteract, true)
+        npcinteract = CreatePed(4, model, coords.x, coords.y, coords.z, coords.w, true, false)
+        SetBlockingOfNonTemporaryEvents(npcinteract, true)
+        SetEntityInvincible(npcinteract, true)
+        FreezeEntityPosition(npcinteract, true)
 
         local opties = {
             { label = locale('target'), icon = config.Config.interacticon, onSelect = npcinteractie }
         }
 
-        configureernpcinteractie(npcInteract, opties)
+        configureernpcinteractie(npcinteract, opties)
         SetModelAsNoLongerNeeded(model)
 
-        maaknpcPunt(coords)
+        maaknpcpunt(coords)
 
         if config.Config.debug then
           lib.print.debug(locale('debugNpcSpawn'))
@@ -167,17 +167,17 @@ end
 -- Start de NPC locatie cyclus
 local function startLocatieCyclus()
     randomLocatie()
-    spawnNpc()
+    spawnnpc()
 
     SetTimeout(config.Config.npcspawntime * 60 * 1000, function()
         randomLocatie()
 
-        if npcInteract then
-            DeleteEntity(npcInteract)
-            npcInteract = nil
+        if npcinteract then
+            DeleteEntity(npcinteract)
+            npcinteract = nil
         end
 
-        spawnNpc()
+        spawnnpc()
         toonmelding()
     end)
 end
