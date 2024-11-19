@@ -1,0 +1,20 @@
+{
+    "target": "Deal",
+    "dealerLocationChange": "Location has changed",
+    "progressBarLabel": "Talking",
+    "debugPhoneDisabled": "Is the phone disabled?",
+    "noInteractionEnabled": "No interaction script found. Please change to target or download an interaction script.",
+    "debug_model_loading_failed": "Failed to load model.",
+    "debugPhoneMissing": "Where is the phone script?",
+    "debugPhoneLabel": "SL-Dealer, please use your phone.",
+    "debug_register_check": "No register DM Strixluca.",
+    "debugPhoneLabel2": "Phone",
+    "debugNoCore": "Core functionality missing.",
+    "debugRegisterCheck": "Black Market inventory registered with the following items: %s",
+    "debugNpcDeal": "Engaging in a deal with the NPC!",
+    "debugNpcSpawn": "NPC spawned at the following location:",
+    "debugModelLoadingError": "Error loading model.",
+    "debugNoItem": "Item is missing a name or price.",
+    "debugPhoneNotificationSent": "Notification sent:",
+    "debugTargetConfig": "You can only set one of 'target' or 'interact' to true. Please check your configuration and set one to false that you are not using."
+}

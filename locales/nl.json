@@ -1,14 +1,20 @@
 {
     "target": "Dealen",
-    "debug_no_core": "Geen core aanwezig",
-    "debug_register_check": "Black Market inventory geregistreerd met de items: %s",
-    "debug_npc_deal": "Deal met de NPC!",
-    "debug_npc_spawn": "NPC gespawnd op locatie",
-    "debug_model_loading": "NPC gespawnd op locatie",
-    "debug_no_item": "Item ontbreekt naam of prijs:",
-    "debug_phone_debug": "Melding verzonden:",
-    "debug_targetconfig": "You can only set 1 to true go to the config and set target or interact to false"
+    "progressBarLabel": "Praten",
+    "dealerLocationChange": "Locatie is veranderd ",
+    "debugPhoneDisabled": "Wordt er geen telefoonscript gebruikt?",
+    "noInteractionEnabled": "Er is geen interactiescript gevonden. Wijzig naar target of download een interactiescript.",
+    "debugNoPhone": "Waar is het telefoonscript?",
+    "debug_model_loading_failed": "NPC kan niet worden geladen.",
+    "debug_register_check": "Geen register DM Strixluca",
+    "debugPhoneLabel": "SL-Dealer, gebruik je",
+    "debugPhoneLabel2": "Telefoon",
+    "debugNoCore": "Core functionaliteit ontbreekt.",
+    "debugRegisterCheck": "Black Market inventaris geregistreerd met de volgende items: %s",
+    "debugNpcDeal": "Deal met de NPC!",
+    "debugNpcSpawn": "NPC gespawnd op de volgende locatie:",
+    "debugModelLoadingError": "Fout bij het laden van de NPC.",
+    "debugNoItem": "Item mist een naam of prijs.",
+    "debugPhoneNotificationSent": "Melding verzonden:",
+    "debugTargetConfig": "Je kunt maar één van 'target' of 'interact' op true zetten. Controleer je configuratie en zet de andere op false."
 }
-
-
-

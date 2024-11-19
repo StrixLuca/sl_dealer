@@ -11,36 +11,39 @@
 ------------------
 lib.locale()
 local inventory = exports.bl_bridge:inventory()
-
+local sharedConfig = require 'config.dealerconfig'
 
 ------------------
 -----functions----
 ------------------
-
 function registerBlackMarket()
     local shopItems = {}
 
-    for _, item in ipairs(Config.BlackMarket.items) do
+    -- Gebruik de correcte structuur: sharedConfig.Config.BlackMarket
+    for _, item in ipairs(sharedConfig.Config.BlackMarket.items) do
         if item.name and item.price then
             table.insert(shopItems, item.name)  
         else
-            if Config.debug then
+            if sharedConfig.Config.debug then
                 lib.print.debug(locale('debug_no_item') .. ": " .. tostring(item))
             end
         end
     end
 
-    inventory.registerInventory(Config.BlackMarket.id, {
-        type = 'shop',  
-        name = Config.BlackMarket.name,
-        items = Config.BlackMarket.items,  
+    -- Registreer het Black Market inventory
+    inventory.registerInventory(sharedConfig.Config.BlackMarket.id, {
+        type = 'shop',
+        name = sharedConfig.Config.BlackMarket.name,
+        items = sharedConfig.Config.BlackMarket.items,
     })
 
-    if Config.debug then
-        lib.print.debug(locale('debug_register_check') .. ": " .. table.concat(shopItems, ", ")) 
+    -- Debug output als het is ingeschakeld
+    if sharedConfig.Config.debug then
+        lib.print.debug(locale('debug_register_check') .. ": " .. table.concat(shopItems, ", "))
     end
 end
 
+-- Event handler bij het starten van de resource
 AddEventHandler('onServerResourceStart', function(resourceName)
     if resourceName == 'ox_inventory' or resourceName == GetCurrentResourceName() then
         registerBlackMarket()
