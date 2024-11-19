@@ -34,7 +34,8 @@ Notification System: Set the required item for receiving notifications.
 Target Systems: Seamlessly toggle compatibility with different target systems and frameworks.
 Anti-Dump Protection: Secure sensitive data like coordinates.
 Debugging Options: Enable or disable debugging features to assist with troubleshooting during setup or updates.
-
+## Discord
+[Discord](https://discord.gg/VGTmjNdN5e) for now dutch!
 ## Dependencies
 To run SL_Dealer, ensure the following dependencies are installed:
 
