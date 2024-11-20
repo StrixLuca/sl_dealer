@@ -12,7 +12,7 @@ return {
         -----------------------------------------------------------------------------------------
         -- Interaction settings only one on true!
         interaction = 'target',                 --  (target) for QB/OX  (interact) for sleepless/interact/interaction-menu
-        interacticon = 'phone',                 -- change the icon for interact
+        interacticon = 'fa fa-phone',                 -- change the icon for interact
         npcLoadDistance = 50,                   -- NPC Load in for player distance (fps proof)
         -----------------------------------------------------------------------------------------
 
