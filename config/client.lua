@@ -18,7 +18,7 @@ return {
 
         --- Notification for dealer change
         usenotification = true,                -- True for notification if dealer switch location
-        item = 'locakpick',                        -- Change the item for the notification
+        item = 'lockpick',                        -- Change the item for the notification
         notifyduration = 2500,                 -- Duration for the notify
         -----------------------------------------------------------------------------------------
 
