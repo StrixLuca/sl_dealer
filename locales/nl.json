@@ -2,6 +2,7 @@
     "target": "Dealen",
     "progressBarLabel": "Praten",
     "dealerLocationChange": "Locatie is veranderd ",
+    "zitinauto": "Ga uit je voertuig?",
     "debugPhoneDisabled": "Wordt er geen telefoonscript gebruikt?",
     "noInteractionEnabled": "Er is geen interactiescript gevonden. Wijzig naar target of download een interactiescript.",
     "debugNoPhone": "Waar is het telefoonscript?",

@@ -3,7 +3,7 @@ game "gta5"
 author "Strixluca"
 scriptname "sl_dealer"
 lua54 "yes"
-version 'v1.0.0'
+version '1.0.0'
 
 -- Library dependencies
 ox_lib 'locale'
@@ -22,8 +22,8 @@ server_scripts {
 
 -- Files to include
 files {
-    'config/dealerconfig.lua',
-    'server/dealerconfig.lua', 
+    'config/client.lua',
+    'config/server.lua', 
     'locales/*.json',
 }
 
@@ -31,3 +31,5 @@ files {
 shared_scripts {
     '@ox_lib/init.lua',
 }
+
+dependency {'ox_lib' ,'bl_bridge'}

@@ -2,6 +2,7 @@
     "target": "Deal",
     "dealerLocationChange": "Location has changed",
     "progressBarLabel": "Talking",
+    "zitinauto": "Go out your vehicle",
     "debugPhoneDisabled": "Is the phone disabled?",
     "noInteractionEnabled": "No interaction script found. Please change to target or download an interaction script.",
     "debug_model_loading_failed": "Failed to load model.",

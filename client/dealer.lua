@@ -3,8 +3,8 @@
 ----------------------
 
 lib.locale()
-local config = require 'config.dealerconfig'
-local serverConfig = require 'server.dealerconfig'
+local config = require 'config.client'
+local serverConfig = require 'config.server'
 local framework = exports.bl_bridge
 local core = framework:core()
 local target = framework:target()
@@ -49,6 +49,14 @@ end
 
 -- Logica voor NPC interactie
 local function npcinteractie()
+    if cache.vehicle then return
+        notify({
+            description = locale('zitinauto'),
+            type = 'error',
+            duration = config.Config.notifyduration
+        })
+    
+     end
     progressbar.showProgress({
         duration = config.Config.progressbar.duration,
         label = locale('progressBarLabel'),
@@ -74,11 +82,11 @@ local function npcinteractie()
 end
 
 -- Configureer interactieopties voor de NPC
-local function configureernpcinteractie(npc, opties)
+local function configureernpcinteractie(npc, opties) 
     if config.Config.interaction == 'target' then
         target.addEntity({ entity = npc, options = opties })
     elseif config.Config.interaction == 'interact' then
-    elseif GetResourceState('interaction-menu') == 'started' then
+    elseif GetResourceState('interactionMenu') == 'started' then
            exports['interactionMenu']:Create {
             entity = NetworkGetNetworkIdFromEntity(npc),
             offset = vec3(0, 0, 0),
@@ -122,7 +130,7 @@ local function maaknpcpunt(coords)
     })
 
     function point:onEnter()
-        spawnnpc()
+        npcspawn()
     end
 
     function point:onExit()
@@ -134,7 +142,7 @@ local function maaknpcpunt(coords)
 end
 
 -- Spawn een NPC op de huidige locatie
-function spawnnpc()
+function npcspawn()
     if npcinteract then return end
 
     local locatie = serverConfig.locations[huidigeLocatie]
@@ -167,7 +175,7 @@ end
 -- Start de NPC locatie cyclus
 local function startLocatieCyclus()
     randomLocatie()
-    spawnnpc()
+    npcspawn()
 
     SetTimeout(config.Config.npcspawntime * 60 * 1000, function()
         randomLocatie()
@@ -177,7 +185,7 @@ local function startLocatieCyclus()
             npcinteract = nil
         end
 
-        spawnnpc()
+        npcspawn()
         toonmelding()
     end)
 end

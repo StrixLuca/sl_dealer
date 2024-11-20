@@ -11,7 +11,7 @@
 ------------------
 lib.locale()
 local inventory = exports.bl_bridge:inventory()
-local sharedConfig = require 'config.dealerconfig'
+local sharedConfig = require 'config.client'
 
 ------------------
 -----functions----
@@ -49,3 +49,9 @@ AddEventHandler('onServerResourceStart', function(resourceName)
         registerBlackMarket()
     end
 end)
+
+
+---check versie
+
+lib.versionCheck('StrixLuca/sl_dealer')
+if not lib.checkDependency('StrixLuca/sl_dealer', '1.0.0', true) then return end
