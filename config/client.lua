@@ -11,7 +11,7 @@ return {
         debug = true,           -- Enable debug mode (true/false) for devs
         -----------------------------------------------------------------------------------------
         -- Interaction settings only one on true!
-        interaction = 'interact',                 --  (target) for QB/OX  (interact) for sleepless/interact/interaction-menu
+        interaction = 'target',                 --  (target) for QB/OX  (interact) for sleepless/interact/interaction-menu
         interacticon = 'phone',                 -- change the icon for interact
         npcLoadDistance = 50,                   -- NPC Load in for player distance (fps proof)
         -----------------------------------------------------------------------------------------
