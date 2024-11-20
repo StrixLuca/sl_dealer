@@ -88,19 +88,19 @@ local function configureernpcinteractie(npc, opties)
     elseif config.Config.interaction == 'interact' then
     elseif GetResourceState('interactionMenu') == 'started' then
            exports['interactionMenu']:Create {
-            entity = NetworkGetNetworkIdFromEntity(npc),
-            offset = vec3(0, 0, 0),
-            maxDistance = 3.0,
-            options = {
-                {
-                    label = locale('target'),
-                    icon = config.Config.interacticon,
-                    action = function()
-                            npcinteractie()
-                        end
-                    }
-                }
+        netId = npc, -- <<<<
+        offset = vec3(0, 0, 0),
+        maxDistance = 3.0,
+        options = {
+            {
+                label = locale('target'),
+                icon = config.Config.interacticon,
+                action = function()
+                    npcinteractie()
+                end
             }
+        }
+    }
     elseif GetResourceState('interact') == 'started' then
             exports.interact:AddEntityInteraction({
                 netId = NetworkGetNetworkIdFromEntity(npc),
