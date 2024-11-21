@@ -1,31 +1,14 @@
 ----------------------
 -- Alle Lokale Variabelen --
 ----------------------
-
 lib.locale()
-local config = require 'config.client'
-local serverConfig = require 'config.server'
-local framework = exports.bl_bridge
-local core = framework:core()
-local target = framework:target()
-local inventory = framework:inventory()
-local progressbar = framework:progressbar()
-local notify = framework:notify()
-
 local npcinteract = nil
 local huidigeLocatie = nil
-
-if not core and config.Config.debug then
-    lib.print.debug(locale('debugNoCore'))
-    return
-end
-
 ----------------------
 -- Lokale Functies --
 ----------------------
-
--- Kies een willekeurige locatie die verschilt van de vorige
 local function randomLocatie()
+    local serverConfig = require 'config.server'
     local nieuweIndex
     repeat
         nieuweIndex = lib.math.random(1, #serverConfig.locations)
@@ -33,12 +16,13 @@ local function randomLocatie()
     huidigeLocatie = nieuweIndex
 end
 
--- Toon een melding als een item aanwezig is
+
 local function toonmelding()
+    local config = require 'config.client'
     if config.Config.usenotification then
         local vereistItem = config.Config.item
-        if inventory.hasItem(vereistItem) then
-            notify({
+        if exports.bl_bridge:inventory().hasItem(vereistItem) then
+            exports.bl_bridge:notify()({
                 description = config.Config.BlackMarket.dealername .. " " .. locale('dealerLocationChange'),
                 type = 'success',
                 duration = config.Config.notifyduration
@@ -47,17 +31,18 @@ local function toonmelding()
     end
 end
 
--- Logica voor NPC interactie
+
 local function npcinteractie()
+    local config = require 'config.client'
     if cache.vehicle then return
-        notify({
+        exports.bl_bridge:notify()({
             description = locale('zitinauto'),
             type = 'error',
             duration = config.Config.notifyduration
         })
     
      end
-    progressbar.showProgress({
+     exports.bl_bridge:progressbar().showProgress({
         duration = config.Config.progressbar.duration,
         label = locale('progressBarLabel'),
         canCancel = true,
@@ -70,7 +55,7 @@ local function npcinteractie()
         Wait(config.Config.progressbar.duration)
     end
 
-    inventory.openInventory("shop", config.Config.BlackMarket.id)
+    exports.bl_bridge:inventory().openInventory("shop", config.Config.BlackMarket.id)
 
     if config.Config.interaction == 'target' or config.Config.interaction == 'interact' then
         ClearPedTasks(npcinteract)
@@ -81,49 +66,52 @@ local function npcinteractie()
     end
 end
 
--- Configureer interactieopties voor de NPC
+
 local function configureernpcinteractie(npc, opties) 
+    local config = require 'config.client'
     if config.Config.interaction == 'target' then
-        target.addEntity({ entity = npc, options = opties })
-    elseif config.Config.interaction == 'interact' then
-    elseif GetResourceState('interactionMenu') == 'started' then
+        exports.bl_bridge:target().addEntity({ entity = npc, options = opties })
+    end  
+    if config.Config.interaction == 'interact' then
+        if GetResourceState('interactionMenu') == 'started' then
            exports['interactionMenu']:Create {
-        netId = npc, -- <<<<
-        offset = vec3(0, 0, 0),
-        maxDistance = 3.0,
-        options = {
-            {
-                label = locale('target'),
-                icon = config.Config.interacticon,
-                action = function()
-                    npcinteractie()
-                end
-            }
-        }
-    }
-    elseif GetResourceState('interact') == 'started' then
+            entity = NetworkGetNetworkIdFromEntity(npc),
+            offset = vec3(0, 0, 0),
+            maxDistance = 3.0,
+            options = {
+                {
+                    label = locale('target'),
+                    icon = config.Config.interacticon,
+                    action = function()
+                            npcinteractie()
+                        end
+                    }
+                }
+            } end
+            if GetResourceState('interact') == 'started' then
             exports.interact:AddEntityInteraction({
                 netId = NetworkGetNetworkIdFromEntity(npc),
                 id = 'dealer_interaction',
                 distance = 5.0,
                 interactDst = 3.0,
                 options = opties
-            })
-        elseif GetResourceState('sleepless_interact') == 'started' then
+            }) end
+            if GetResourceState('sleepless_interact') == 'started' then
             exports.sleepless_interact:addEntity({
                 id = "interactnpc",
                 netId = NetworkGetNetworkIdFromEntity(npc),
                 options = opties,
                 renderDistance = 5.0,
                 activeDistance = 3.0,
-            })
+            }) end
         else
             lib.print.warn(locale('noInteractionEnabled'))
         end
 end
 
--- Maak een NPC punt
+
 local function maaknpcpunt(coords)
+    local config = require 'config.client'
     local point = lib.points.new({
         coords = coords,
         distance = config.Config.npcLoadDistance,
@@ -141,8 +129,10 @@ local function maaknpcpunt(coords)
     end
 end
 
--- Spawn een NPC op de huidige locatie
+
 function npcspawn()
+    local config = require 'config.client'
+     local serverConfig = require 'config.server'
     if npcinteract then return end
 
     local locatie = serverConfig.locations[huidigeLocatie]
@@ -172,8 +162,9 @@ function npcspawn()
     end
 end
 
--- Start de NPC locatie cyclus
+
 local function startLocatieCyclus()
+    local config = require 'config.client'
     randomLocatie()
     npcspawn()
 

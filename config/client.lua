@@ -11,14 +11,14 @@ return {
         debug = true,           -- Enable debug mode (true/false) for devs
         -----------------------------------------------------------------------------------------
         -- Interaction settings only one on true!
-        interaction = 'target',                 --  (target) for QB/OX  (interact) for sleepless/interact/interaction-menu
-        interacticon = 'fa fa-phone',                 -- change the icon for interact
-        npcLoadDistance = 50,                   -- NPC Load in for player distance (fps proof)
+        interaction = 'interact',               --  (target) for QB/OX  (interact) for sleepless/interact/interaction-menu
+        interacticon = 'phone',               -- change the icon for interact
+        npcLoadDistance = 50,                 -- NPC Load in for player distance (fps proof)
         -----------------------------------------------------------------------------------------
 
         --- Notification for dealer change
         usenotification = true,                -- True for notification if dealer switch location
-        item = 'lockpick',                        -- Change the item for the notification
+        item = 'locakpick',                        -- Change the item for the notification
         notifyduration = 2500,                 -- Duration for the notify
         -----------------------------------------------------------------------------------------
 

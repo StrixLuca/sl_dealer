@@ -6,52 +6,40 @@
 
 
 
-------------------
-----ALL LOCALS----
-------------------
-lib.locale()
-local inventory = exports.bl_bridge:inventory()
-local sharedConfig = require 'config.client'
 
+lib.locale()
 ------------------
 -----functions----
 ------------------
 function registerBlackMarket()
     local shopItems = {}
-
-    -- Gebruik de correcte structuur: sharedConfig.Config.BlackMarket
-    for _, item in ipairs(sharedConfig.Config.BlackMarket.items) do
+    local server = require 'config.client'
+    for _, item in ipairs(server.Config.BlackMarket.items) do
         if item.name and item.price then
             table.insert(shopItems, item.name)  
         else
-            if sharedConfig.Config.debug then
+            if server.Config.debug then
                 lib.print.debug(locale('debug_no_item') .. ": " .. tostring(item))
             end
         end
     end
-
-    -- Registreer het Black Market inventory
-    inventory.registerInventory(sharedConfig.Config.BlackMarket.id, {
+    
+    exports.bl_bridge:inventory().registerInventory(server.Config.BlackMarket.id, {
         type = 'shop',
-        name = sharedConfig.Config.BlackMarket.name,
-        items = sharedConfig.Config.BlackMarket.items,
+        name = server.Config.BlackMarket.name,
+        items = server.Config.BlackMarket.items,
     })
 
-    -- Debug output als het is ingeschakeld
-    if sharedConfig.Config.debug then
+    if server.Config.debug then
         lib.print.debug(locale('debug_register_check') .. ": " .. table.concat(shopItems, ", "))
     end
 end
 
--- Event handler bij het starten van de resource
 AddEventHandler('onServerResourceStart', function(resourceName)
     if resourceName == 'ox_inventory' or resourceName == GetCurrentResourceName() then
         registerBlackMarket()
     end
 end)
-
-
----check versie
 
 lib.versionCheck('StrixLuca/sl_dealer')
 if not lib.checkDependency('StrixLuca/sl_dealer', '1.0.0', true) then return end
