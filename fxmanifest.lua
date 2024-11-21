@@ -3,7 +3,7 @@ game "gta5"
 author "Strixluca"
 scriptname "sl_dealer"
 lua54 "yes"
-version '1.0.0'
+version '1.0.1'
 
 -- Library dependencies
 ox_lib 'locale'

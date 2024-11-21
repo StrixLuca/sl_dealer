@@ -41,5 +41,3 @@ AddEventHandler('onServerResourceStart', function(resourceName)
     end
 end)
 
-lib.versionCheck('StrixLuca/sl_dealer')
-if not lib.checkDependency('StrixLuca/sl_dealer', '1.0.0', true) then return end
