@@ -29,8 +29,8 @@ return {
         },
         --- npc animation
         npcanimation = {
-            dict = "mp_common",               -- Animation dictionary for progress bar
-            clip = "givetake1_a",             -- Animation clip for progress bar
+            dict = "mp_common",               -- Animation dictionary for npc
+            clip = "givetake1_a",             -- Animation clip for npc
         },
         ------------------------------------------------------------------------------------------
       
