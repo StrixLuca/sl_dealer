@@ -9,6 +9,7 @@ return {
     Config = {
         ---Devs
         debug = true,           -- Enable debug mode (true/false) for devs
+        -- set ox:printlevel:unibridge "debug"
         -----------------------------------------------------------------------------------------
         -- Interaction settings only one on true!
         interaction = 'interact',               --  (target) for QB/OX  (interact) for sleepless/interact/interaction-menu
