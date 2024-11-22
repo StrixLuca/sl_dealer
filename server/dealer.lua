@@ -27,7 +27,7 @@ function registerBlackMarket()
 end
 
 AddEventHandler('onServerResourceStart', function(resourceName)
-    if resourceName == 'ox_inventory' or resourceName == GetCurrentResourceName() then
+    if resourceName == 'ox_inventory' or 'qb-inventory' or 'qs-inventory' resourceName == GetCurrentResourceName() then     -- need test
         registerBlackMarket()
     end
 end)
