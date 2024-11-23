@@ -132,7 +132,7 @@ end
 
 function npcspawn()
     local config = require 'config.client'
-     local serverConfig = require 'config.server'
+    local serverConfig = require 'config.server'
     if npcinteract then return end
 
     local locatie = serverConfig.locations[huidigeLocatie]
@@ -145,6 +145,16 @@ function npcspawn()
         SetEntityInvincible(npcinteract, true)
         FreezeEntityPosition(npcinteract, true)
 
+    if config.Config.blip.blips then
+        local blip = AddBlipForEntity(npcinteract)
+        SetBlipSprite(blip, config.Config.blip.BlipSprite)  
+        SetBlipDisplay(blip, config.Config.blip.SetBlipDisplay)  
+        SetBlipScale(blip, config.Config.blip.SetBlipScale)  
+        SetBlipColour(blip, config.Config.blipColour)  
+        BeginTextCommandSetBlipName("STRING")
+        AddTextComponentString(locale('npc_blip_name'))  
+        EndTextCommandSetBlipName(blip)
+    end        
         local opties = {
             { label = locale('target'), icon = config.Config.interacticon, onSelect = npcinteractie }
         }
@@ -155,7 +165,7 @@ function npcspawn()
         maaknpcpunt(coords)
 
         if config.Config.debug then
-          lib.print.debug(locale('debugNpcSpawn'))
+            lib.print.debug(locale('debugNpcSpawn'))
         end
     elseif config.Config.debug then
         lib.print.debug(locale('debug_model_loading_failed') .. ": " .. model)

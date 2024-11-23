@@ -20,7 +20,13 @@ return {
         --- SpawnTime settings
         npcspawntime = 60,                     -- Interval for NPC location change (in minutes)
         ------------------------------------------------------------------------------------------
-     
+        blip = {
+            blips = true,                      -- blip true or false
+            BlipSprite = 310,                  -- change BlipSprite
+            SetBlipDisplay = 4,                -- Change SetBlipDisplay
+            SetBlipScale = 0.5,                -- Change SetBlipScale
+            blipColour = 4                     -- Change blip color
+        },
         --- Progress bar settings and animation
         progressbar = {
             dict = "mp_common",               -- Animation dictionary for progress bar
